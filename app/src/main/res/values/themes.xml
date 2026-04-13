@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        Base application theme.
+        Primary color: deep purple #7B2FBE (matches Flutter's deepPurpleAccent)
+        Background: #0A0A0A near-black
+    -->
+    <style name="Theme.NovaBrowser" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <!-- Colours -->
+        <item name="colorPrimary">#7B2FBE</item>
+        <item name="colorPrimaryVariant">#5B1E9C</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#BB86FC</item>
+        <item name="colorOnSecondary">#000000</item>
+        <item name="colorSurface">#141414</item>
+        <item name="colorOnSurface">#FFFFFF</item>
+        <item name="colorBackground">#0A0A0A</item>
+        <item name="colorOnBackground">#FFFFFF</item>
+        <item name="colorError">#FF5252</item>
+
+        <!-- Status bar + nav bar — fully transparent, edge-to-edge -->
+        <item name="android:statusBarColor">#0A0A0A</item>
+        <item name="android:navigationBarColor">#0A0A0A</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+
+        <!-- No title bar — we use our own Toolbar -->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+
+        <!-- Smooth window background -->
+        <item name="android:windowBackground">#0A0A0A</item>
+
+        <!-- Ripple on dark surfaces -->
+        <item name="rippleColor">#337B2FBE</item>
+
+        <!-- PopupMenu dark style -->
+        <item name="popupMenuStyle">@style/NovaBrowser.PopupMenu</item>
+        <item name="android:popupMenuStyle">@style/NovaBrowser.PopupMenu</item>
+    </style>
+
+    <!-- Dark popup / overflow menu -->
+    <style name="NovaBrowser.PopupMenu" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">#1E1E1E</item>
+    </style>
+
+    <!-- Settings activity — same base, keeps ActionBar for Up navigation -->
+    <style name="Theme.NovaBrowser.Settings" parent="Theme.NovaBrowser">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+        <item name="colorPrimary">#141414</item>
+        <item name="actionBarStyle">@style/NovaBrowser.ActionBar</item>
+    </style>
+
+    <style name="NovaBrowser.ActionBar" parent="Widget.AppCompat.ActionBar">
+        <item name="background">#141414</item>
+        <item name="titleTextStyle">@style/NovaBrowser.ActionBar.Title</item>
+    </style>
+
+    <style name="NovaBrowser.ActionBar.Title" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+</resources>

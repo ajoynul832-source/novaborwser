@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  activity_main.xml
+  Root layout: ConstraintLayout with the WebView fragment container in the
+  middle and the browser toolbar pinned to the bottom (default).
+  The progress bar sits just above / below the toolbar.
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A0A">
+
+    <!-- ============================================================
+         Fragment container — WebView fills this area
+         ============================================================ -->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#0A0A0A"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/progress_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Loading progress bar (2dp, purple accent) -->
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:progressTint="#7B2FBE"
+        android:progressBackgroundTint="@android:color/transparent"
+        android:max="100"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/toolbar_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- ============================================================
+         Bottom Toolbar container
+         ============================================================ -->
+    <LinearLayout
+        android:id="@+id/toolbar_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#0A0A0A"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Divider line -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#1AFFFFFF" />
+
+        <!-- Main toolbar row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp">
+
+            <!-- Back -->
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_arrow_back"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Back"
+                android:tint="#B3FFFFFF" />
+
+            <!-- Forward -->
+            <ImageButton
+                android:id="@+id/btn_forward"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_arrow_forward"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Forward"
+                android:tint="#B3FFFFFF" />
+
+            <!-- URL bar pill -->
+            <LinearLayout
+                android:id="@+id/url_bar_container"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_url_bar"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp">
+
+                <ImageView
+                    android:id="@+id/icon_security"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_search"
+                    android:tint="#66FFFFFF"
+                    android:contentDescription="Security status" />
+
+                <EditText
+                    android:id="@+id/url_bar"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:background="@null"
+                    android:hint="Search or type URL"
+                    android:hintTextColor="#66FFFFFF"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    android:singleLine="true"
+                    android:inputType="textUri"
+                    android:imeOptions="actionGo"
+                    android:maxLines="1"
+                    android:textCursorDrawable="@null" />
+            </LinearLayout>
+
+            <!-- Reload / Stop -->
+            <ImageButton
+                android:id="@+id/btn_reload"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_reload"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Reload"
+                android:tint="#B3FFFFFF" />
+
+            <!-- Tab count badge -->
+            <TextView
+                android:id="@+id/btn_tabs"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:background="@drawable/bg_tab_count"
+                android:contentDescription="Tabs"
+                android:padding="4dp" />
+
+            <!-- Menu (three-dot) -->
+            <ImageButton
+                android:id="@+id/btn_menu"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_more_vert"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Menu"
+                android:tint="#FFFFFF" />
+
+        </LinearLayout>
+
+        <!-- System navigation bar spacer (edge-to-edge) -->
+        <View
+            android:id="@+id/nav_bar_spacer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+    </LinearLayout>
+
+    <!-- ============================================================
+         Tab Switcher overlay — slides over the whole screen
+         ============================================================ -->
+    <FrameLayout
+        android:id="@+id/tab_switcher_panel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#E6000000"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Header row -->
+        <LinearLayout
+            android:id="@+id/tab_switcher_header"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="8dp"
+            android:layout_gravity="top">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Tabs"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btn_new_tab_switcher"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_add"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="#FFFFFF"
+                android:contentDescription="New Tab" />
+
+            <ImageButton
+                android:id="@+id/btn_new_incognito_tab"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_incognito"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="#FFFFFF"
+                android:contentDescription="New Incognito Tab" />
+
+            <ImageButton
+                android:id="@+id/btn_close_tab_switcher"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_close"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="#FFFFFF"
+                android:contentDescription="Close Switcher" />
+        </LinearLayout>
+
+        <!-- Tab list -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="56dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="80dp"
+            android:clipToPadding="false" />
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nova Browser</string>
+    <string name="url_hint">Search or type URL</string>
+    <string name="new_tab">New Tab</string>
+    <string name="incognito_tab">Incognito Tab</string>
+    <string name="settings">Settings</string>
+    <string name="clear_data">Clear Browsing Data</string>
+    <string name="data_cleared">Browsing data cleared 🔥</string>
+
+    <!-- Settings labels -->
+    <string name="setting_ad_block">Ad Blocker</string>
+    <string name="setting_data_saver">Data Saver</string>
+    <string name="setting_https">Force HTTPS</string>
+    <string name="setting_clear_exit">Clear Data on Exit</string>
+    <string name="setting_desktop">Desktop Mode</string>
+    <string name="setting_toolbar_pos">Toolbar Position</string>
+    <string name="setting_search_engine">Search Engine</string>
+</resources>

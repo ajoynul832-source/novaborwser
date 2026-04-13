@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_primary">#0A0A0A</color>
+    <color name="bg_surface">#141414</color>
+    <color name="bg_elevated">#1E1E1E</color>
+    <color name="accent_purple">#7B2FBE</color>
+    <color name="accent_purple_light">#BB86FC</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#99FFFFFF</color>
+    <color name="text_hint">#66FFFFFF</color>
+    <color name="divider">#1AFFFFFF</color>
+    <color name="incognito_red">#FF5252</color>
+    <color name="secure_green">#4CAF50</color>
+    <color name="supernova_orange">#FFAB40</color>
+</resources>

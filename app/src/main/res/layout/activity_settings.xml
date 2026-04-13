@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0A0A0A">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#141414"
+        android:elevation="4dp" />
+
+    <!-- Scrollable settings body -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- ─── Privacy ─────────────────────────────────────── -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Privacy"
+                android:textColor="#7B2FBE"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp" />
+
+            <include layout="@layout/item_settings_switch"
+                android:id="@+id/row_ad_block" />
+
+            <include layout="@layout/item_settings_switch"
+                android:id="@+id/row_data_saver" />
+
+            <include layout="@layout/item_settings_switch"
+                android:id="@+id/row_https_upgrade" />
+
+            <include layout="@layout/item_settings_switch"
+                android:id="@+id/row_clear_on_exit" />
+
+            <!-- ─── Appearance ───────────────────────────────────── -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Appearance"
+                android:textColor="#7B2FBE"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp" />
+
+            <include layout="@layout/item_settings_switch"
+                android:id="@+id/row_desktop_mode" />
+
+            <!-- Toolbar position radio group -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Toolbar position"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="6dp" />
+
+            <RadioGroup
+                android:id="@+id/radio_group_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radio_bottom"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Bottom"
+                    android:textColor="#CCFFFFFF"
+                    android:buttonTint="#7B2FBE" />
+
+                <RadioButton
+                    android:id="@+id/radio_top"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Top"
+                    android:textColor="#CCFFFFFF"
+                    android:buttonTint="#7B2FBE" />
+
+            </RadioGroup>
+
+            <!-- ─── Search Engine ────────────────────────────────── -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search Engine"
+                android:textColor="#7B2FBE"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp" />
+
+            <RadioGroup
+                android:id="@+id/radio_group_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/radio_ddg"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="DuckDuckGo"
+                    android:textColor="#CCFFFFFF"
+                    android:buttonTint="#7B2FBE" />
+
+                <RadioButton
+                    android:id="@+id/radio_google"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="Google"
+                    android:textColor="#CCFFFFFF"
+                    android:buttonTint="#7B2FBE" />
+
+                <RadioButton
+                    android:id="@+id/radio_bing"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="Bing"
+                    android:textColor="#CCFFFFFF"
+                    android:buttonTint="#7B2FBE" />
+
+                <RadioButton
+                    android:id="@+id/radio_brave"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="Brave Search"
+                    android:textColor="#CCFFFFFF"
+                    android:buttonTint="#7B2FBE" />
+
+            </RadioGroup>
+
+            <!-- ─── Data ─────────────────────────────────────────── -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data"
+                android:textColor="#7B2FBE"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Supernova / Clear data button -->
+            <Button
+                android:id="@+id/btn_clear_data"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="🔥  Clear Browsing Data"
+                android:textColor="#FFAB40"
+                android:backgroundTint="#1AFFAB40"
+                android:cornerRadius="12dp"
+                android:textStyle="bold" />
+
+            <View android:layout_width="match_parent" android:layout_height="32dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
