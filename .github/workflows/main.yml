@@ -22,25 +22,44 @@ jobs:
           distribution: 'temurin'
 
       - name: Prepare Android SDK (cmdline-tools + packages)
+        env:
+          ANDROID_SDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}
         run: |
-          mkdir -p "${ANDROID_SDK_ROOT}"
-          cd "${ANDROID_SDK_ROOT}"
-          # download command line tools
+          set -e
+          echo "Installing Android SDK to: $ANDROID_SDK_ROOT"
+          mkdir -p "$ANDROID_SDK_ROOT"
+          cd "$ANDROID_SDK_ROOT"
           curl -sSfL -o cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
           unzip -q cmdline-tools.zip -d cmdline-tools-temp
           mkdir -p cmdline-tools/latest
           mv cmdline-tools-temp/cmdline-tools/* cmdline-tools/latest/
           rm -f cmdline-tools.zip
-          export PATH="${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${ANDROID_SDK_ROOT}/platform-tools:${PATH}"
+          export PATH="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$PATH"
           yes | sdkmanager --licenses || true
-          sdkmanager --update
-          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0" "cmdline-tools;latest"
+          sdkmanager --list
+          sdkmanager --install "platform-tools" "platforms;android-34" "build-tools;34.0.0" "cmdline-tools;latest"
         shell: bash
 
       - name: Add Android SDK to PATH
         run: |
           echo "${ANDROID_SDK_ROOT}/platform-tools" >> $GITHUB_PATH
           echo "${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin" >> $GITHUB_PATH
+
+      - name: Create local.properties pointing to SDK (required by AGP)
+        run: |
+          echo "sdk.dir=${ANDROID_SDK_ROOT}" > local.properties
+          echo "Wrote local.properties:"
+          cat local.properties
+
+      - name: Show repo & wrapper debug info
+        run: |
+          echo "Working dir: $(pwd)"
+          echo "Listing root:"
+          ls -la
+          echo "Listing gradle/wrapper:"
+          ls -la gradle/wrapper || true
+          echo "gradle-wrapper.properties:"
+          cat gradle/wrapper/gradle-wrapper.properties || true
 
       - name: Install Gradle 8.5
         run: |
@@ -55,15 +74,16 @@ jobs:
           ls -la gradle/wrapper || true
 
       - name: Build APK (use gradle wrapper if present, else gradle)
+        env:
+          ANDROID_SDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}
         run: |
+          set -x
           if [ -x ./gradlew ]; then
             chmod +x ./gradlew
             ./gradlew clean assembleDebug --no-daemon --stacktrace --warning-mode all
           else
             gradle clean assembleDebug --no-daemon --stacktrace --warning-mode all
           fi
-        env:
-          ANDROID_SDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
